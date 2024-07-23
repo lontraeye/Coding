@@ -25,11 +25,7 @@ public class SpritePathBuilder {
         int direction = adjustValue(outfit.getDirection());
         int mountstate = determineMountState(outfit);
 
-        if (addonLevel == 0) {
-            addonLevel = 1;
-        }
-
-        return String.format("%d_%d_1_%d", movement, mountstate, direction);
+        return String.format("%d_%d_%d_%d", movement, mountstate, addonLevel, direction);
     }
 
     // Métodos para construir os caminhos para cada tipo de sprite
@@ -67,18 +63,29 @@ public class SpritePathBuilder {
         return getPathForLooktype(adjustValue(outfit.getMount())) + String.format("%d_1_1_%d.png", movement, direction);
     }
 
-    // Método que monta os endereços das imagens e faz o console log
+    /// Método que retorna um objeto OutfitPaths com todos os paths
+    public static OutfitPaths getAllPaths(Outfit outfit) {
+        OutfitPaths paths = new OutfitPaths();
+        paths.setLooktypeCheckPath(getLooktypeCheckPath(outfit));
+        paths.setOutfitPath(getOutfitPath(outfit));
+        paths.setOutfitTemplatePath(getOutfitTemplatePath(outfit));
+        paths.setAddon1Path(getAddon1Path(outfit));
+        paths.setAddon1TemplatePath(getAddon1TemplatePath(outfit));
+        paths.setAddon2Path(getAddon2Path(outfit));
+        paths.setAddon2TemplatePath(getAddon2TemplatePath(outfit));
+        paths.setMountPath(getMountPath(outfit));
+        return paths;
+    }
+
     public static void logAllPaths(Outfit outfit) {
         System.out.println("Looktype Check Path: " + getLooktypeCheckPath(outfit));
         System.out.println("Outfit Path: " + getOutfitPath(outfit));
         System.out.println("Outfit Template Path: " + getOutfitTemplatePath(outfit));
 
-        //TO-DO FIX ADDONS
         System.out.println("Addon 1 Path: " + getAddon1Path(outfit));
         System.out.println("Addon 1 Template Path: " + getAddon1TemplatePath(outfit));
         System.out.println("Addon 2 Path: " + getAddon2Path(outfit));
         System.out.println("Addon 2 Template Path: " + getAddon2TemplatePath(outfit));
-
 
         System.out.println("Mount Path: " + getMountPath(outfit));
     }
