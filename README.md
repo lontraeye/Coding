@@ -1,1 +1,2 @@
-![Demonstração do Projeto](tibia-stalker.gif)
+![stalker](tibia-stalker.gif)
+![magex](tibia-ezgif.com-gif-maker.gif)
