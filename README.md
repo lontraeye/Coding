@@ -1,1 +1,1 @@
-![stalker]([URL-do-GIF](https://github.com/lontraeye/Coding/tibia-stalker.gif))
+![Demonstração do Projeto](tibia-stalker.gif)
