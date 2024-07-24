@@ -14,13 +14,24 @@ public class ImageMerger {
         g.dispose();
     }
 
-    public static BufferedImage mergeImages(OutfitPaths paths, Outfit outfit) throws IOException {
+    public static BufferedImage mergeImages(Outfit outfit) throws IOException {
+        // Busca o Path das imagens
+        OutfitPaths paths = SpritePathBuilder.getAllPaths(outfit);
+
         // Carregar todas as imagens
         BufferedImage looktypeCheckImg = ImageIO.read(new File(paths.getLooktypeCheckPath()));
         BufferedImage outfitImg = ImageIO.read(new File(paths.getOutfitPath()));
         BufferedImage addon1Img = ImageIO.read(new File(paths.getAddon1Path()));
         BufferedImage addon2Img = ImageIO.read(new File(paths.getAddon2Path()));
-        BufferedImage mountImg = ImageIO.read(new File(paths.getMountPath()));
+
+        // Declarar mountImg e inicializá-la com null
+        BufferedImage mountImg = null;
+
+        // Carregar imagem da montaria se outfit.getMount() > 0
+        if (outfit.getMount() > 0) {
+            mountImg = ImageIO.read(new File(paths.getMountPath()));
+        }
+
         BufferedImage outfitTplImg = ImageIO.read(new File(paths.getOutfitTemplatePath()));
         BufferedImage addon1TplImg = ImageIO.read(new File(paths.getAddon1TemplatePath()));
         BufferedImage addon2TplImg = ImageIO.read(new File(paths.getAddon2TemplatePath()));
@@ -38,32 +49,25 @@ public class ImageMerger {
         g.dispose();
 
         // Adicionar addons
-        // if (outfit.getAddons() == 1 || outfit.getAddons() == 3) {
-        //     overlay(mergedImage, addon1Img);
-        // }
-        // if (outfit.getAddons() == 2 || outfit.getAddons() == 3) {
-        //     overlay(mergedImage, addon2Img);
-        // }
+        if (outfit.getAddons() == 1 || outfit.getAddons() == 3) {
+            overlay(mergedImage, addon1Img);
+        }
+        if (outfit.getAddons() == 2 || outfit.getAddons() == 3) {
+            overlay(mergedImage, addon2Img);
+        }
 
         // Pintar o template
-        // if (outfitTplImg != null) {
-        //     overlay(mergedImage, outfitTplImg);
-        // }
-        // if (addon1TplImg != null && (outfit.getAddons() == 1 || outfit.getAddons() == 3)) {
-        //     overlay(mergedImage, addon1TplImg);
-        // }
-        // if (addon2TplImg != null && (outfit.getAddons() == 2 || outfit.getAddons() == 3)) {
-        //     overlay(mergedImage, addon2TplImg);
-        // }
+        ImageColorizer colorizer = new ImageColorizer(outfit.getHead(), outfit.getBody(), outfit.getLegs(), outfit.getFeet());
+        mergedImage = colorizer.applyColors(outfitTplImg, outfitImg);
 
         // Adicionar montaria se houver
-        if (outfit.getMount() > 0) {
+        if (mountImg != null) {
             BufferedImage mountImage = getMountImage(mountImg);
             overlay(mountImage, mergedImage);
             mergedImage = mountImage;
         }
 
-        //Ajustar para 64x64 se necessário
+        // Ajustar para 64x64 se necessário
         if (mergedImage.getWidth() < 64) {
             BufferedImage base = new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = base.createGraphics();

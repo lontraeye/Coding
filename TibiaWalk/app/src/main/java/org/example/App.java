@@ -9,13 +9,11 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) {
 
-        Outfit outfit = new Outfit(130, 0, 1, 3, 406, "FFFFFF", "FFFFFF", "FFFFFF", "FFFFFF", false);
-        
-        OutfitPaths paths = SpritePathBuilder.getAllPaths(outfit);
+        Outfit outfit = new Outfit(130, 3, 1, 3, 406, "ff0000", "00A9FF", "0055FF", "557F00", false);
 
         try {
             // Mesclar as imagens
-            BufferedImage mergedImage = ImageMerger.mergeImages(paths, outfit);
+            BufferedImage mergedImage = ImageMerger.mergeImages(outfit);
 
             // Salvar a imagem resultante
             String outputPath = "TibiaWalk/app/src/main/resources/mergedOutput/merged_outfit.png";
