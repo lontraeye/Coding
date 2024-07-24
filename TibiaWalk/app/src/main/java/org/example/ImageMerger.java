@@ -43,10 +43,25 @@ public class ImageMerger {
         // Criar uma nova imagem com a mesma largura e altura
         BufferedImage mergedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
+        // Adicionar montaria se houver
+        if (mountImg != null) {
+            BufferedImage mountImage = getMountImage(mountImg);
+            Graphics g = mergedImage.getGraphics();
+            g.drawImage(mountImage, 0, 0, null);
+            g.dispose();
+        }
+
         // Desenhar a imagem principal
         Graphics g = mergedImage.getGraphics();
         g.drawImage(outfitImg, 0, 0, null);
         g.dispose();
+
+        // Pintar o template
+        ImageColorizer colorizer = new ImageColorizer(outfit.getHead(), outfit.getBody(), outfit.getLegs(), outfit.getFeet());
+        BufferedImage coloredTemplate = colorizer.applyColors(outfitTplImg, outfitImg);
+
+        // Mesclar o template colorido sobre o outfit original
+        overlay(mergedImage, coloredTemplate);
 
         // Adicionar addons
         if (outfit.getAddons() == 1 || outfit.getAddons() == 3) {
@@ -54,17 +69,6 @@ public class ImageMerger {
         }
         if (outfit.getAddons() == 2 || outfit.getAddons() == 3) {
             overlay(mergedImage, addon2Img);
-        }
-
-        // Pintar o template
-        ImageColorizer colorizer = new ImageColorizer(outfit.getHead(), outfit.getBody(), outfit.getLegs(), outfit.getFeet());
-        mergedImage = colorizer.applyColors(outfitTplImg, outfitImg);
-
-        // Adicionar montaria se houver
-        if (mountImg != null) {
-            BufferedImage mountImage = getMountImage(mountImg);
-            overlay(mountImage, mergedImage);
-            mergedImage = mountImage;
         }
 
         // Ajustar para 64x64 se necessário

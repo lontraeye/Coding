@@ -9,7 +9,7 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) {
 
-        Outfit outfit = new Outfit(130, 3, 1, 3, 406, "ff0000", "00A9FF", "0055FF", "557F00", false);
+        Outfit outfit = new Outfit(130, 3, 1, 3, 1724, "ff0000", "00A9FF", "0055FF", "557F00", false);
 
         try {
             // Mesclar as imagens
