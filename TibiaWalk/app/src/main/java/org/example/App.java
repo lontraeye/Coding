@@ -15,6 +15,8 @@ public class App {
             // Mesclar as imagens
             BufferedImage mergedImage = ImageMerger.mergeImages(outfit);
 
+        //    SpritePathBuilder.logAllPaths(outfit);
+
             // Salvar a imagem resultante
             String outputPath = "TibiaWalk/app/src/main/resources/mergedOutput/merged_outfit.png";
             ImageMerger.saveImage(mergedImage, outputPath);

@@ -63,6 +63,12 @@ public class SpritePathBuilder {
         return getPathForLooktype(adjustValue(outfit.getMount())) + String.format("%d_1_1_%d.png", movement, direction);
     }
 
+    public static String getMountTemplatePath(Outfit outfit) {
+        int movement = adjustValue(outfit.getMovement());
+        int direction = adjustValue(outfit.getDirection());
+        return getPathForLooktype(adjustValue(outfit.getMount())) + String.format("%d_1_1_%d_template.png", movement, direction);
+    }
+
     /// Método que retorna um objeto OutfitPaths com todos os paths
     public static OutfitPaths getAllPaths(Outfit outfit) {
         OutfitPaths paths = new OutfitPaths();
@@ -74,6 +80,7 @@ public class SpritePathBuilder {
         paths.setAddon2Path(getAddon2Path(outfit));
         paths.setAddon2TemplatePath(getAddon2TemplatePath(outfit));
         paths.setMountPath(getMountPath(outfit));
+        paths.setMountTemplatePath(getMountTemplatePath(outfit));
         return paths;
     }
 
@@ -86,6 +93,7 @@ public class SpritePathBuilder {
         System.out.println("Addon 1 Template Path: " + getAddon1TemplatePath(outfit));
         System.out.println("Addon 2 Path: " + getAddon2Path(outfit));
         System.out.println("Addon 2 Template Path: " + getAddon2TemplatePath(outfit));
+        System.out.println("mount Template Path: " + getMountTemplatePath(outfit));
 
         System.out.println("Mount Path: " + getMountPath(outfit));
     }

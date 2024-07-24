@@ -15,6 +15,8 @@ public class ImageMerger {
     }
 
     public static BufferedImage mergeImages(Outfit outfit) throws IOException {
+        ImageColorizer colorizer = new ImageColorizer(outfit.getHead(), outfit.getBody(), outfit.getLegs(), outfit.getFeet());
+
         // Busca o Path das imagens
         OutfitPaths paths = SpritePathBuilder.getAllPaths(outfit);
 
@@ -46,6 +48,7 @@ public class ImageMerger {
         // Adicionar montaria se houver
         if (mountImg != null) {
             BufferedImage mountImage = getMountImage(mountImg);
+
             Graphics g = mergedImage.getGraphics();
             g.drawImage(mountImage, 0, 0, null);
             g.dispose();
@@ -57,7 +60,7 @@ public class ImageMerger {
         g.dispose();
 
         // Pintar o template
-        ImageColorizer colorizer = new ImageColorizer(outfit.getHead(), outfit.getBody(), outfit.getLegs(), outfit.getFeet());
+        
         BufferedImage coloredTemplate = colorizer.applyColors(outfitTplImg, outfitImg);
 
         // Mesclar o template colorido sobre o outfit original

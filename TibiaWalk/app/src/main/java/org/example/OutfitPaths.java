@@ -9,6 +9,7 @@ public class OutfitPaths {
     private String addon2Path;
     private String addon2TemplatePath;
     private String mountPath;
+    private String mountTemplatePath;
 
     // Getters e Setters
 
@@ -74,5 +75,13 @@ public class OutfitPaths {
 
     public void setMountPath(String mountPath) {
         this.mountPath = mountPath;
+    }
+
+    public String getMountTemplatePath() {
+        return mountTemplatePath;
+    }
+
+    public void setMountTemplatePath(String mountTemplatePath) {
+        this.mountTemplatePath = mountTemplatePath;
     }
 }
