@@ -26,10 +26,8 @@ public class ImageMerger {
         BufferedImage addon1Img = ImageIO.read(new File(paths.getAddon1Path()));
         BufferedImage addon2Img = ImageIO.read(new File(paths.getAddon2Path()));
     
-        // Declarar mountImg e inicializá-la com null
         BufferedImage mountImg = null;
     
-        // Carregar imagem da montaria se outfit.getMount() > 0
         if (outfit.getMount() > 0) {
             mountImg = ImageIO.read(new File(paths.getMountPath()));
         }
@@ -55,10 +53,8 @@ public class ImageMerger {
     
         // Adicionar montaria se houver
         if (mountImg != null) {
-            BufferedImage mountImage = getMountImage(mountImg);
-    
             Graphics g = mergedImage.getGraphics();
-            g.drawImage(mountImage, 0, 0, null);
+            g.drawImage(mountImg, 0, 0, null);
             g.dispose();
         }
     
@@ -104,18 +100,18 @@ public class ImageMerger {
         return mergedImage;
     }    
 
-    private static BufferedImage getMountImage(BufferedImage mountImg) {
-        // Transformar 32x32 em 64x64 se necessário
-        if (mountImg.getWidth() < 64) {
-            BufferedImage baseMount = new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2d = baseMount.createGraphics();
-            g2d.setComposite(AlphaComposite.SrcOver);
-            g2d.drawImage(mountImg, 32, 32, null);
-            g2d.dispose();
-            return baseMount;
-        }
-        return mountImg;
-    }
+    // private static BufferedImage getMountImage(BufferedImage mountImg) {
+    //     // Transformar 32x32 em 64x64 se necessário
+    //     if (mountImg.getWidth() < 64) {
+    //         BufferedImage baseMount = new BufferedImage(64, 64, BufferedImage.TYPE_INT_ARGB);
+    //         Graphics2D g2d = baseMount.createGraphics();
+    //         g2d.setComposite(AlphaComposite.SrcOver);
+    //         g2d.drawImage(mountImg, 32, 32, null);
+    //         g2d.dispose();
+    //         return baseMount;
+    //     }
+    //     return mountImg;
+    // }
 
     public static void saveImage(BufferedImage image, String outputPath) throws IOException {
         File outputfile = new File(outputPath);

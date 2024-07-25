@@ -9,16 +9,16 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) {
 
-        Outfit outfit = new Outfit(130, 3, 1, 3, 1724, "ff0000", "00A9FF", "0055FF", "557F00", false);
+        Outfit outfit = new Outfit(130, 3, 1, 3, 1326, "ff0000", "00A9FF", "0055FF", "557F00", false);
 
         try {
             // Mesclar as imagens
             BufferedImage mergedImage = ImageMerger.mergeImages(outfit);
 
             // Salvar a imagem resultante
-            String outputPath = "TibiaWalk/app/src/main/resources/standby/merged_outfit.png";
+            String outputPath = "app/src/main/resources/standby/merged_outfit.png";
             ImageMerger.saveImage(mergedImage, outputPath);
-            GifBuilder.createGif(outfit, "TibiaWalk/app/src/main/resources/walkgif/output.gif");
+            GifBuilder.createGif(outfit, "app/src/main/resources/walkgif/output.gif");
 
 
             // System.out.println("Imagem mesclada salva em: " + outputPath);

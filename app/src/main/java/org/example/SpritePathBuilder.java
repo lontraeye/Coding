@@ -2,19 +2,16 @@ package org.example;
 
 public class SpritePathBuilder {
 
-    private static final String BASE_DIR = "TibiaWalk/app/src/main/resources/outfitSprites/";
+    private static final String BASE_DIR = "app/src/main/resources/outfitSprites/";
 
-    // Método para construir o caminho para uma pasta específica de looktype
     static String getPathForLooktype(int looktype) {
         return BASE_DIR + looktype + "/";
     }
 
-    // Método para ajustar valores de 0 para 1
     private static int adjustValue(int value) {
         return (value == 0) ? 1 : value;
     }
 
-    // Método para determinar o mountstate
     private static int determineMountState(Outfit outfit) {
         return (outfit.getMount() > 0) ? 2 : 1;
     }
