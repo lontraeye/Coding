@@ -12,12 +12,12 @@ public class App {
         Outfit outfit = new Outfit(130, 3, 1, 3, 1326, "ff0000", "00A9FF", "0055FF", "557F00", false);
 
         try {
-            // Mesclar as imagens
+            // Gera um png standBy
             BufferedImage mergedImage = ImageMerger.mergeImages(outfit);
-
-            // Salvar a imagem resultante
             String outputPath = "app/src/main/resources/standby/merged_outfit.png";
             ImageMerger.saveImage(mergedImage, outputPath);
+
+            // Cria o gif, obviamente
             GifBuilder.createGif(outfit, "app/src/main/resources/walkgif/output.gif");
 
 
