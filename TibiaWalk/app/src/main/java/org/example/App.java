@@ -15,13 +15,13 @@ public class App {
             // Mesclar as imagens
             BufferedImage mergedImage = ImageMerger.mergeImages(outfit);
 
-        //    SpritePathBuilder.logAllPaths(outfit);
-
             // Salvar a imagem resultante
             String outputPath = "TibiaWalk/app/src/main/resources/mergedOutput/merged_outfit.png";
-            ImageMerger.saveImage(mergedImage, outputPath);
+            // ImageMerger.saveImage(mergedImage, outputPath);
+            GifBuilder.createGif(outfit, "TibiaWalk/app/src/main/resources/gifzone/output.gif");
 
-            System.out.println("Imagem mesclada salva em: " + outputPath);
+
+            // System.out.println("Imagem mesclada salva em: " + outputPath);
         } catch (IOException e) {
             System.err.println("Erro ao mesclar as imagens: " + e.getMessage());
         }

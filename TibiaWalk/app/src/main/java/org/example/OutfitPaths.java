@@ -1,6 +1,7 @@
 package org.example;
 
 public class OutfitPaths {
+    private String Path;
     private String looktypeCheckPath;
     private String outfitPath;
     private String outfitTemplatePath;
@@ -83,5 +84,13 @@ public class OutfitPaths {
 
     public void setMountTemplatePath(String mountTemplatePath) {
         this.mountTemplatePath = mountTemplatePath;
+    }
+
+    public String getPath() {
+        return Path;
+    }
+
+    public void setPath(String path) {
+        Path = path;
     }
 }

@@ -60,11 +60,14 @@ public class ImageMerger {
         g.dispose();
 
         // Pintar o template
-        
         BufferedImage coloredTemplate = colorizer.applyColors(outfitTplImg, outfitImg);
+        BufferedImage coloredAddonTemplate = colorizer.applyColors(addon1TplImg, addon1Img);
+        BufferedImage coloredAddon2Template = colorizer.applyColors(addon2TplImg, addon2Img);
 
         // Mesclar o template colorido sobre o outfit original
         overlay(mergedImage, coloredTemplate);
+        overlay(addon1Img, coloredAddonTemplate);
+        overlay(addon2Img, coloredAddon2Template);
 
         // Adicionar addons
         if (outfit.getAddons() == 1 || outfit.getAddons() == 3) {
