@@ -63,7 +63,7 @@ public class GifBuilder {
         // Configurar informações de controle do GIF
         IIOMetadataNode graphicsControlExtensionNode = getNode(root, "GraphicControlExtension");
         graphicsControlExtensionNode.setAttribute("delayTime", "10"); // Delay entre frames em centésimos de segundo
-        graphicsControlExtensionNode.setAttribute("disposalMethod", "none");
+        graphicsControlExtensionNode.setAttribute("disposalMethod", "restoreToBackgroundColor");
 
         // Configurar a extensão da aplicação para repetição contínua
         IIOMetadataNode appExtensionsNode = getNode(root, "ApplicationExtensions");
