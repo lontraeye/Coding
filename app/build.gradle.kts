@@ -30,11 +30,6 @@ application {
     mainClass.set("org.example.App")
 }
 
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
-}
-
 // Configure the jar task to enable ZIP64
 tasks.withType<Jar> {
     isZip64 = true
