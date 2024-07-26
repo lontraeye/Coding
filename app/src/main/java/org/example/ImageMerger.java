@@ -1,10 +1,13 @@
 package org.example;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.AlphaComposite;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class ImageMerger {
 
@@ -15,7 +18,8 @@ public class ImageMerger {
     }
 
     public static BufferedImage mergeImages(Outfit outfit) throws IOException {
-        ImageColorizer colorizer = new ImageColorizer(outfit.getHead(), outfit.getBody(), outfit.getLegs(), outfit.getFeet());
+        ImageColorizer colorizer = new ImageColorizer(outfit.getHead(), outfit.getBody(), outfit.getLegs(),
+                outfit.getFeet());
 
         // Busca o Path das imagens
         OutfitPaths paths = SpritePathBuilder.getAllPaths(outfit);
@@ -110,7 +114,6 @@ public class ImageMerger {
             g2d.dispose();
             mergedImage = base;
         }
-
         return mergedImage;
     }
 
